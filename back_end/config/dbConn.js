@@ -1,14 +1,17 @@
-const mongoose = require('mongoose');
+var mysql = require('mysql');
 
-const connectDB = async () => {
-    try {
-        await mongoose.connect(process.env.DATABASE_URI, {
-            useUnifiedTopology: true,
-            useNewUrlParser: true
-        });
-    } catch (err) {
-        console.error(err);
-    }
+const connectDB = () => {
+
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "kavindu",
+        password: "20171k"
+      });
+      
+      con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+      });
 }
 
 module.exports = connectDB
